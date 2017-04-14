@@ -16,9 +16,10 @@ view: user_events1 {
   dimension: event_sequence {type: number}
 }
 
-explore: user_event_attribution {hidden: yes}
+explore: user_event_attribution {hidden: no}
 view: user_event_attribution {
   derived_table: {
+    persist_for: "2 hours"
     query: {
       query_explore: user_events1
       column: user_id {field: user_events1.user_id}
@@ -29,6 +30,6 @@ view: user_event_attribution {
       }
     }
   }
-  dimension: user_id {hiden: yes}
+  dimension: user_id {hidden: yes}
   dimension: traffic_source {}
 }

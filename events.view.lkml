@@ -87,9 +87,8 @@ view: events {
   }
 
   dimension: user_id {
-    type: string
-    # hidden: yes
-    sql: ${TABLE}.user_id ;;
+    type: number
+    sql: CAST(REGEXP_EXTRACT(${TABLE}.user_id, r'\d\d?\d?\d?\d?\d?\d?\d?\d?\d?\d?\d?\d?') AS INT64) ;;
   }
 
   dimension: zip {
