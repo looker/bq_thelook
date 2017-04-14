@@ -1,8 +1,5 @@
-
-explore: user_order_facts {}
 view: user_order_facts {
   derived_table: {
-    persist_for: "2 hours"
     query: {
       query_explore: order_items
       column: user_id { field: order_items.user_id}

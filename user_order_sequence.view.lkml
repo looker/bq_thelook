@@ -1,5 +1,3 @@
-explore: user_order_sequence {}
-
 view: user_order_sequence {
   derived_table: {
     persist_for: "2 hours"
@@ -13,6 +11,6 @@ view: user_order_sequence {
       }
     }
   }
-  dimension: order_id {}
+  dimension: order_id {hidden: yes}
   dimension: user_sequence {type: number}
 }

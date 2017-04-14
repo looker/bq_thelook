@@ -56,9 +56,23 @@ explore: order_items {
   }
 
   join: user_order_facts {
+    view_label: "Users"
     sql_on: ${user_order_facts.user_id} = ${order_items.user_id} ;;
     relationship: many_to_one
   }
+
+  join: user_order_sequence {
+    view_label: "Order Items"
+    sql_on: ${user_order_sequence.order_id} = ${order_items.order_id} ;;
+    relationship: many_to_one
+  }
+
+  join: user_event_attribution {
+    view_label: "Users"
+    sql_on: ${user_event_attribution.user_id} = ${order_items.user_id} ;;
+    relationship: many_to_one
+  }
+
 }
 
 explore: products {
