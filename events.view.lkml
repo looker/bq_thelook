@@ -88,7 +88,7 @@ view: events {
 
   dimension: user_id {
     type: number
-    sql: CAST(REGEXP_EXTRACT(${TABLE}.user_id, r'\d\d?\d?\d?\d?\d?\d?\d?\d?\d?\d?\d?\d?') AS INT64) ;;
+    sql: CAST(REGEXP_EXTRACT(${TABLE}.user_id, r'\d+') AS INT64) ;;
   }
 
   dimension: zip {
@@ -100,4 +100,35 @@ view: events {
     type: count
     drill_fields: [id, users.last_name, users.id, users.first_name]
   }
+
+  #
+  #  Sessionization Fields.
+  #
+  measure: minimum_time {
+    sql: MIN(${created_raw}) ;;
+  }
+
+  measure: max_time {
+    sql: MAX(${created_raw}) ;;
+  }
+
+  measure: ip_addresses {
+    sql: ARRAY_TO_STRING(ARRAY_AGG(DISTINCT ${ip_address}),'|') ;;
+  }
+
+  measure: event_types {
+    sql: ARRAY_TO_STRING(ARRAY_AGG(DISTINCT ${event_type}),'|') ;;
+  }
+
+  measure: user_ids {
+    sql: ARRAY_TO_STRING(ARRAY_AGG(DISTINCT CAST(${user_id} AS STRING)),'|') ;;
+  }
+
+  measure: product_ids_visited {
+    sql: ARRAY_AGG(DISTINCT
+            CAST(REGEXP_EXTRACT(${uri}, r'/product/(\d+)') AS INT64)
+          IGNORE NULLS) ;;
+
+  }
+
 }
