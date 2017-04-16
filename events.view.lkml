@@ -120,15 +120,18 @@ view: events {
     sql: ARRAY_TO_STRING(ARRAY_AGG(DISTINCT ${event_type}),'|') ;;
   }
 
-  measure: user_ids {
-    sql: ARRAY_TO_STRING(ARRAY_AGG(DISTINCT CAST(${user_id} AS STRING)),'|') ;;
+  # code defensivly.  Should only have one user_id on a session, but just
+  # in case, we'll take the first one we see.
+  measure: first_user_id {
+    type: min
+    sql: ${user_id} ;;
   }
 
+  # parse the product_id out of the urls visited and return an array of them.
   measure: product_ids_visited {
     sql: ARRAY_AGG(DISTINCT
             CAST(REGEXP_EXTRACT(${uri}, r'/product/(\d+)') AS INT64)
           IGNORE NULLS) ;;
-
   }
 
 }
