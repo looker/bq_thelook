@@ -12,9 +12,19 @@ view: products {
     sql: ${TABLE}.brand ;;
   }
 
+  measure: brand_list {
+    type: list
+    list_field: brand
+  }
+
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;
+  }
+
+  measure: category_list {
+    type: list
+    list_field: category
   }
 
   dimension: cost {

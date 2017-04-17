@@ -1,22 +1,6 @@
 include: "products.view"
 include: "users.view"
 
-explore: event_sessions {
-  join: users {
-    sql_on: ${users.id} = ${event_sessions.user_id} ;;
-    relationship: many_to_one
-  }
-  join: product_id {
-    from: id
-    sql: LEFT JOIN UNNEST(${event_sessions.product_ids_visited}) as product_id ;;
-    relationship: one_to_many
-  }
-  join: products {
-    sql_on: ${product_id.id} = ${products.id} ;;
-    relationship: many_to_one
-  }
-}
-
 view: event_sessions {
   derived_table: {
     persist_for: "2 hours"
@@ -60,6 +44,15 @@ view: event_sessions {
   measure: count_sessions {
     type: count
     drill_fields: [session*]
+  }
+
+  measure: count_sessions_with_cart {
+    type: count
+    drill_fields: [session*]
+    filters: {
+      field: event_types
+      value: "%Cart%"
+    }
   }
 
   measure: count_sessions_with_purchases {
