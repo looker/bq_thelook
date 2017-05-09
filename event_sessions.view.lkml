@@ -13,7 +13,7 @@ view: event_sessions {
       column: ip_addresses {field: events.ip_addresses }
       column: user_id {field: events.first_user_id }
       column: product_ids_visited {field: events.product_ids_visited}
-      window: session_sequence {
+      column: session_sequence {
         sql: ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY session_time) ;;
       }
     }
