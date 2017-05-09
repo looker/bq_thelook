@@ -34,13 +34,13 @@ explore: inventory_items {
 explore: user_joins {
   extension: required
   join: user_order_facts {
-    view_label: "Users"
-    sql_on: ${user_order_facts.user_id} = ${user.id} ;;
+    #view_label: "Users"
+    sql_on: ${user_order_facts.user_id} = ${users.id} ;;
     relationship: many_to_one
   }
   join: user_event_attribution {
     view_label: "Users"
-    sql_on: ${user_event_attribution.user_id} = ${user.id} ;;
+    sql_on: ${user_event_attribution.user_id} = ${users.id} ;;
     relationship: many_to_one
   }
   join: lifetime_brand {

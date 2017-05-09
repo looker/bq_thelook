@@ -3,7 +3,7 @@ include: "users.view"
 
 view: event_sessions {
   derived_table: {
-    persist_for: "2 hours"
+    #persist_for: "2 hours"
     query: {
       query_explore: events
       column: session_id { field: events.session_id }
