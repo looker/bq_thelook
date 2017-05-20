@@ -1,6 +1,8 @@
 include: "users.view"
+include: "user_joins.explore"
 
 explore: user_day_stats {
+  extends: [user_joins]
   view_name: events
   from: user_day_events
   join: orders {
@@ -14,12 +16,12 @@ explore: user_day_stats {
     relationship: many_to_one
   }
 }
-
+include: "events.explore"
+include: "order_items.explore"
 
 view: user_day_events {
   derived_table: {
-    query: {
-      query_explore: events
+    explore_source: events {
       column: user_id { field: events.user_id }
       column: events { field: events.count }
       column: created_date { field: events.created_date }
@@ -40,8 +42,7 @@ view: user_day_events {
 
 view: user_day_orders {
   derived_table: {
-    query: {
-      query_explore: order_items
+    explore_source: order_items {
       column: user_id { field: order_items.user_id }
       column: created_date { field: order_items.created_date }
       column: revenue { field: order_items.total_revenue }

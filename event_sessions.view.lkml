@@ -1,11 +1,11 @@
 include: "products.view"
 include: "users.view"
+include: "events.explore"
 
 view: event_sessions {
   derived_table: {
     #persist_for: "2 hours"
-    query: {
-      query_explore: events
+    explore_source: events {
       column: session_id { field: events.session_id }
       column: event_types { field: events.event_types }
       column: session_time { field: events.minimum_time }
@@ -13,7 +13,7 @@ view: event_sessions {
       column: ip_addresses {field: events.ip_addresses }
       column: user_id {field: events.first_user_id }
       column: product_ids_visited {field: events.product_ids_visited}
-      column: session_sequence {
+      derived_column: session_sequence {
         sql: ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY session_time) ;;
       }
     }

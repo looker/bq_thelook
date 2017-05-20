@@ -81,6 +81,18 @@ view: users {
     sql: ${TABLE}.zip ;;
   }
 
+  measure: average_home_value {
+    type: average
+    sql: ${zip_demographics.median_home_value} ;;
+    value_format_name: decimal_0
+  }
+
+  measure: probability_hispanic {
+    type: average
+    sql: ${zip_demographics.probability_hispanic}  ;;
+    value_format_name: percent_2
+  }
+
   measure: count {
     type: count
     drill_fields: [id, last_name, first_name, events.count, order_items.count]
