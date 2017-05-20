@@ -64,6 +64,11 @@ view: order_items {
     sql: ${TABLE}.user_id ;;
   }
 
+  measure: orders_per_capita {
+    type: number
+    sql: ${order_count}/NULLIF(${zip_demographics.total_population}, 0) ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
