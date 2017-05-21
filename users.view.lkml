@@ -93,6 +93,12 @@ view: users {
     value_format_name: percent_2
   }
 
+  measure: probability_male {
+    type: average
+    sql: ${probability_male.male_percentage}  ;;
+    value_format_name: percent_2
+  }
+
   measure: count {
     type: count
     drill_fields: [id, last_name, first_name, events.count, order_items.count]

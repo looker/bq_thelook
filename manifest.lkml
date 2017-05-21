@@ -6,3 +6,7 @@ project_name: "bq_thelook"
 local_dependency: {
   project: "acs"
 }
+
+local_dependency: {
+  project: "name_game2"
+}
