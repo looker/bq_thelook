@@ -8,7 +8,7 @@ view: zip_demographics {
       column: zip { field: tract_zcta_map.ZCTA5 }
       column: median_home_value { field: median_value.weighted_median_value }
       column: probability_hispanic { field: hispanic.percentage_selected }
-      column: total_population { field: zip_total_population.total}
+      column: total_population { field: population.total_base}
     }
   }
   dimension: zip {
@@ -26,8 +26,8 @@ view: zip_demographics {
     value_format_name: percent_2
     sql: ${TABLE}.probability_hispanic ;;
   }
-
   measure: total_population {
     type: sum
+    sql: ${TABLE}.total_population ;;
   }
 }
