@@ -1,9 +1,9 @@
 include: "order_items.explore"
 
-#explore: user_order_sequence {}
+explore: user_order_sequence {}
 view: user_order_sequence {
   derived_table: {
-    persist_for: "2 hours"
+    #persist_for: "2 hours"
     explore_source: order_items {
       column: user_id { field: order_items.user_id}
       column: order_id {field: order_items.order_id}
