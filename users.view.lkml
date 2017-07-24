@@ -17,6 +17,13 @@ view: users {
     sql: ${TABLE}.city ;;
   }
 
+  filter: event_name {
+    type: string
+    default_value: "Ride"
+    suggestions: ["Reservation", "Ride"]
+    label: "Event Name"
+  }
+
   dimension: country {
     type: string
     sql: ${TABLE}.country ;;
