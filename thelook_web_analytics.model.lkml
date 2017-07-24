@@ -8,11 +8,6 @@ include: "*.dashboard"
 
 include: "*.explore"
 
-explore: users {
-  extends: [user_joins]
-}
-
-
 explore: event_sessions {
   extends: [user_joins]
   join: users {
