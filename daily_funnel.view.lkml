@@ -12,6 +12,8 @@ explore: daily_funnel {
   }
 }
 
+
+# Start with a Date table
 view: daily_funnel {
   derived_table: {
     sql:
@@ -27,7 +29,7 @@ view: daily_funnel {
   }
   filter: filter_date {
     type: date
-    convert_tz: no
+    datatype: date
   }
 
   dimension: date {
@@ -37,6 +39,7 @@ view: daily_funnel {
   }
 }
 
+# Join orders by day
 view: funnel_orders {
   derived_table: {
     explore_source: order_items {
@@ -52,6 +55,7 @@ view: funnel_orders {
   dimension: order_count {type: number}
 }
 
+# Join user signups.
 view: funnel_signups {
   derived_table: {
     explore_source: users {
