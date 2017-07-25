@@ -2,5 +2,6 @@ include: "user_joins.explore"
 include: "users.view"
 
 explore: users {
-  #extends: [user_joins]
+  view_name: users
+  extends: [user_joins]
 }

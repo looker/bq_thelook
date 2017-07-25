@@ -13,7 +13,7 @@ view: order_items {
   dimension: user_id {type: number}
 
   measure: orders_per_capita {type:number  sql: ${order_count}/NULLIF(${zip_demographics.total_population}, 0) ;;}
-  measure: count {type: count  drill_fields: [detail*]}
+  measure: count {type:count  drill_fields: [detail*]}
   measure: total_revenue {type:sum  sql: ${sale_price} ;;}
   measure: order_count {type:count_distinct sql: ${order_id} ;;
     drill_fields: [order_id, count] }
