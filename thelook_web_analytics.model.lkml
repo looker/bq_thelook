@@ -10,17 +10,8 @@ include: "*.explore"
 
 explore: event_sessions {
   extends: [user_joins]
-  join: users {
-    sql_on: ${users.id} = ${event_sessions.user_id} ;;
-    relationship: many_to_one
-  }
-  join: product_id {
-    from: id
-    sql: LEFT JOIN UNNEST(${event_sessions.product_ids_visited}) as product_id ;;
-    relationship: one_to_many
-  }
-  join: products {
-    sql_on: ${product_id.id} = ${products.id} ;;
-    relationship: many_to_one
-  }
+  join: users {relationship:many_to_one  sql_on: ${users.id} = ${event_sessions.user_id} ;; }
+  join: product_id {from:id  relationship:one_to_many
+    sql: LEFT JOIN UNNEST(${event_sessions.product_ids_visited}) as product_id ;;}
+  join: products {relationship:many_to_one  sql_on: ${product_id.id} = ${products.id} ;;}
 }
