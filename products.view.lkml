@@ -4,7 +4,7 @@ view: products {
   dimension: id {primary_key:yes  type:number}
   dimension: brand {type:string  sql: ${TABLE}.brand ;;}
   dimension: category {type:string  sql: ${TABLE}.category ;;}
-  dimension: cost {type:number  sql: ${TABLE}.cost}
+  dimension: cost {type:number  sql: ${TABLE}.cost ;;}
   dimension: department {type:string  sql: ${TABLE}.department ;;}
   dimension: distribution_center_id {type:number  sql: ${TABLE}.distribution_center_id ;;}
   dimension: name {type:string  sql: ${TABLE}.name ;;}
