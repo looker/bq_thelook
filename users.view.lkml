@@ -1,10 +1,6 @@
 view: users {
   sql_table_name: thelook_web_analytics.users ;;
 
-  # What is this?
-  filter: event_name {default_value:"Ride"  label:"Event Name"
-    suggestions: ["Reservation", "Ride"]}
-
   dimension: id {primary_key:yes}
   dimension: age {type:number}
   dimension: city {}
