@@ -10,9 +10,6 @@ view: probability_male {
       column: male_percentage {}
     }
   }
-  dimension: name {hidden: yes}
-  dimension: male_percentage {
-    type:number
-    hidden: yes
-  }
+  dimension: name {hidden:yes}
+  dimension: male_percentage {type:number  hidden: yes}
 }

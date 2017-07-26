@@ -8,37 +8,14 @@ include: "user_joins.explore"
 
 explore: order_items_ignore_errors {
   extension: required
-  join: user_order_sequence {
-    view_label: "Order Items"
-    sql_on: ${user_order_sequence.order_id} = ${order_items.order_id} ;;
-    relationship: many_to_one
-  }
+  join: user_order_sequence {view_label:"Order Items"  relationship: many_to_one
+    sql_on: ${user_order_sequence.order_id} = ${order_items.order_id} ;;}
 }
 
 explore: order_items {
   extends: [user_joins, order_items_ignore_errors]
-
-  join: users {
-    type: left_outer
-    sql_on: ${order_items.user_id} = ${users.id} ;;
-    relationship: many_to_one
-  }
-
-  join: inventory_items {
-    type: left_outer
-    sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
-    relationship: many_to_one
-  }
-
-  join: products {
-    type: left_outer
-    sql_on: ${inventory_items.product_id} = ${products.id} ;;
-    relationship: many_to_one
-  }
-
-  join: distribution_centers {
-    type: left_outer
-    sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
-    relationship: many_to_one
-  }
+  join: users {relationship:many_to_one  sql_on: ${order_items.user_id} = ${users.id} ;;}
+  join: inventory_items {relationship:many_to_one  sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;}
+  join: products {relationship:many_to_one  sql_on: ${inventory_items.product_id} = ${products.id} ;;}
+  join: distribution_centers {relationship:many_to_one  sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;}
 }
