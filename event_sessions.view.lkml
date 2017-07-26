@@ -18,58 +18,27 @@ view: event_sessions {
       }
     }
   }
-  dimension: session_id {primary_key: yes}
+  dimension: session_id {primary_key:yes}
   dimension: event_types {}
-  dimension_group: session {
-    type: time
-    sql: ${TABLE}.session_time ;;
-  }
-  dimension: session_end_time {hidden: yes}
+  dimension_group: session {type:time  sql: ${TABLE}.session_time ;;}
+  dimension: session_end_time {hidden:yes}
   dimension: ip_addresses {}
   dimension: user_id {}
   dimension: product_ids_visited {}
-  dimension: session_sequence {type: number}
+  dimension: session_sequence {type:number}
+  dimension: session_length {type:number
+    sql: TIMESTAMP_DIFF(${session_end_time},${session_raw}, SECOND) ;;}
+  dimension: session_length_tiered {type:tier  tiers: [0,60,120]  sql: ${session_length} ;;}
 
-  dimension: session_length {
-    type: number
-    sql: TIMESTAMP_DIFF(${session_end_time},${session_raw}, SECOND) ;;
-  }
-
-  dimension: session_length_tiered {
-    type: tier
-    tiers: [0,60,120]
-    sql: ${session_length} ;;
-  }
-
-  measure: count_sessions {
-    type: count
-    drill_fields: [session*]
-  }
-
-  measure: count_sessions_with_cart {
-    type: count
-    drill_fields: [session*]
-    filters: {
-      field: event_types
-      value: "%Cart%"
-    }
-  }
-
-  measure: count_sessions_with_purchases {
-    type: count
-    drill_fields: [session*]
-    filters: {
-      field: event_types
-      value: "%Purchase%"
-    }
-  }
+  measure: count_sessions {type:count  drill_fields:[session*]}
+  measure: count_sessions_with_cart {type:count  drill_fields:[session*]
+    filters: {field:event_types  value:"%Cart%"}}
+  measure: count_sessions_with_purchases {type:count  drill_fields: [session*]
+    filters: {field:event_types value:"%Purchase%"}}
 
   set: session{ fields:[session_time, session_id, user_id, event_types]}
 }
 
 view: id {
-  dimension: id {
-    #hidden: yes
-    sql: ${TABLE} ;;
-  }
+  dimension: id {sql: ${TABLE} ;;}
 }
