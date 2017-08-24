@@ -35,7 +35,7 @@ view: users {
 
   dimension: latlong {
     type: location
-    sql_latitude: ${TABLE}.latitude
+    sql_latitude: ${TABLE}.latitude;;
     sql_longitude: ${TABLE}.longitude;;
   }
 
