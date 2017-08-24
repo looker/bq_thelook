@@ -9,6 +9,20 @@ view: users {
     type:number
     }
 
+  dimension: age_tier {
+    type: tier
+    sql: ${age} ;;
+    style: integer
+    tiers: [
+      0,
+      15,
+      30,
+      45,
+      60,
+      75
+    ]
+  }
+
   dimension: city {}
 
   dimension: country {}
