@@ -50,9 +50,18 @@ view: order_items {
     sql: ${sale_price} ;;
     }
 
+  measure: count_returned {
+    type: count_distinct
+    sql:  ${order_id};;
+    filters: {
+      field: status
+      value: "returned"
+    }
+  }
+
   measure: return_rate {
     type: number
-    sql: case when ${status} like 'returned' then count(${returned_at})/${order_count} else null end;;
+    sql: ${count_returned}/${order_count};;
   }
 
   measure: order_count {
