@@ -57,6 +57,7 @@ view: order_items {
       field: status
       value: "returned"
     }
+    value_format_name: "percent_3"
   }
 
   measure: return_rate {
