@@ -52,7 +52,7 @@ view: order_items {
 
   measure: return_rate {
     type: number
-    sql: case when ${status} = 'returned' then count(${returned_at})/${order_count} else null end;;
+    sql: case when ${status} like 'returned' then count(${returned_at})/${order_count} else null end;;
   }
 
   measure: order_count {
