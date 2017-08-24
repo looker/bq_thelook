@@ -57,7 +57,9 @@ view: users {
 
   dimension: traffic_source {}
 
-  dimension: zip {}
+  dimension: zip {
+    type: zipcode
+  }
 
   measure: average_home_value {
     type:average
