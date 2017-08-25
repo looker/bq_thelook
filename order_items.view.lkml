@@ -6,8 +6,8 @@ view: order_items {
     type:number
     }
 
-  dimension_group: created {
-    type:time
+  dimension: created_at {
+    type: date_time
     sql: TIMESTAMP(${TABLE}.created_at) ;;
     }
 
@@ -21,13 +21,21 @@ view: order_items {
     type:number
     }
 
-  dimension: returned_at {}
+  dimension: returned_at {
+    type: date_time
+    sql: CASE WHEN ${TABLE}.returned_at like '%N' THEN NULL ELSE CAST(${TABLE}.returned_at as timestamp)  end ;;
+  }
 
   dimension: sale_price {
     type: number
     }
 
-  dimension: shipped_at {}
+  dimension: shipped_at {
+    type: date
+    sql: CASE WHEN ${TABLE}.shipped_at like '%N' THEN NULL ELSE CAST(${TABLE}.shipped_at as timestamp)  end ;;
+
+
+  }
 
   dimension: status {}
 
