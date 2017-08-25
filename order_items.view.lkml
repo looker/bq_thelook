@@ -6,8 +6,8 @@ view: order_items {
     type:number
     }
 
-  dimension: created_at {
-    type: date_time
+  dimension_group: created {
+    type: time
     sql: TIMESTAMP(${TABLE}.created_at) ;;
     }
 
