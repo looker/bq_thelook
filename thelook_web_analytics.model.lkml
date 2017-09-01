@@ -15,7 +15,3 @@ explore: event_sessions {
     sql: LEFT JOIN UNNEST(${event_sessions.product_ids_visited}) as product_id ;;}
   join: products {relationship:many_to_one  sql_on: ${product_id.id} = ${products.id} ;;}
 }
-
-datagroup: sondra_test_datagroup  {
-   max_cache_age: "5 minutes"
-}
