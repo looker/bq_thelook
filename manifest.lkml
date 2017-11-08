@@ -10,7 +10,3 @@ local_dependency: {
 local_dependency: {
   project: "name_game2"
 }
-
-local_dependency: {
-  project: "bug_reproducer_nlml"
-}
