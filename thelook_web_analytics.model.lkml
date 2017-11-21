@@ -3,7 +3,7 @@ connection: "bigquery_publicdata_standard_sql"
 # include all the views
 include: "*.view"
 
-# include all the dashboards
+# include all the dashboards (testing)
 include: "*.dashboard"
 
 include: "*.explore"
