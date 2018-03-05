@@ -1,6 +1,6 @@
 connection: "bigquery_publicdata_standard_sql"
 
-# include all the views
+# include all the views testing change
 include: "*.view"
 
 # include all the dashboards
